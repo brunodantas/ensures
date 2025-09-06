@@ -11,6 +11,12 @@
 - [Result-type](https://en.wikipedia.org/wiki/Result_type) return values.
 
 
+## Installation
+
+```bash
+pip install ensures
+```
+
 ## Usage
 
 ### `precondition` / `require`
@@ -20,6 +26,9 @@ Runs a list of functions on all args.
 Returns `Error` if any of them fails.
 
 ```python
+from ensures import precondition
+
+
 def is_positive(x):
     """Check if a number is positive."""
     return x > 0
@@ -38,6 +47,9 @@ Runs a list of functions on the result.
 Returns `Error` if any of them fails.
 
 ```python
+from ensures import ensure
+
+
 def result_is_even(result):
     """Check if result is even."""
     return result % 2 == 0
@@ -57,6 +69,9 @@ Runs a list of functions on all args.
 Returns `Error` if any of them fails.
 
 ```python
+from ensures import invariant
+
+
 @invariant(lambda x: x >= 0)  # Simple lambda invariant
 def increment_counter(x):
     """Increment a counter with invariant that it stays non-negative."""
@@ -68,6 +83,9 @@ def increment_counter(x):
 Pattern matching is supported to unpack the `Return` value.
 
 ```python
+from ensures import Error, Success
+
+
 result1 = square_root(1)
 result2 = square_root(-1)  # This will return an Error instance
 
