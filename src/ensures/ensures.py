@@ -10,6 +10,8 @@ class Result:
 class Success(Result):
     """Class to represent a successful result."""
 
+    __match_args__ = ("value",)
+
     def __init__(self, value=None):
         self.value = value
 
@@ -19,6 +21,8 @@ class Success(Result):
 
 class Error(Result):
     """Class to represent an error result."""
+
+    __match_args__ = ("function", "args")
 
     def __init__(self, function, args):
         self.function = function
