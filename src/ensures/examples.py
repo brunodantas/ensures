@@ -7,7 +7,15 @@ The ensures module provides decorators for Design by Contract programming:
 - @invariant: Check conditions both before and after function execution
 """
 
-from ensures import ensure, invariant, postcondition, precondition, require
+from ensures import (
+    Error,
+    Success,
+    ensure,
+    invariant,
+    postcondition,
+    precondition,
+    require,
+)
 
 # ============================================================================
 # PRECONDITION EXAMPLES
@@ -236,6 +244,21 @@ def run_examples():
     print(f"Try to withdraw 200: {account.withdraw(200)}")  # Will fail
     print(f"Try to deposit -10: {account.deposit(-10)}")  # Will fail
     print()
+
+    # Result handling example
+    print("8. Result Handling Example:")
+    result1 = square_root(1)
+    result2 = square_root(-1)  # This will return an Error instance
+
+    def handle_result(res):
+        match res:
+            case Success(value):
+                print(f"Square root calculated: {value}")
+            case Error(func, args):
+                print(f"Precondition failed in {func.__name__} with args {args}")
+
+    handle_result(result1)
+    handle_result(result2)
 
     print("=== END OF EXAMPLES ===")
 
