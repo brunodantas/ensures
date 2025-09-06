@@ -1,0 +1,50 @@
+on:
+  push:
+    branches:
+      - main
+
+name: Create Release
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for proper versioning
+      
+      - name: Extract version from pyproject.toml
+        id: version
+        run: |
+          # Extract version from pyproject.toml
+          VERSION=$(grep '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/')
+          echo "version=v${VERSION}" >> $GITHUB_OUTPUT
+          echo "raw_version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Extracted version: v${VERSION}"
+      
+      - name: Create tag
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git tag ${{ steps.version.outputs.version }}
+          git push origin ${{ steps.version.outputs.version }}
+      
+      - name: Create Release
+        id: create_release
+        uses: comnoco/create-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: Release ${{ steps.version.outputs.version }}
+          body: |
+            Release ${{ steps.version.outputs.raw_version }} from commit ${{ github.sha }}
+            
+            **Version:** ${{ steps.version.outputs.raw_version }} (from pyproject.toml)
+            **Commit Message:** ${{ github.event.head_commit.message }}
+            **Author:** ${{ github.event.head_commit.author.name }}
+            **Timestamp:** ${{ github.event.head_commit.timestamp }}
+          draft: false
+          prerelease: false
