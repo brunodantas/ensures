@@ -5,6 +5,10 @@ on:
 
 name: Create Release
 
+permissions:
+  contents: write
+  pull-requests: read
+
 jobs:
   build:
     name: Create Release
@@ -23,13 +27,6 @@ jobs:
           echo "version=v${VERSION}" >> $GITHUB_OUTPUT
           echo "raw_version=${VERSION}" >> $GITHUB_OUTPUT
           echo "Extracted version: v${VERSION}"
-      
-      - name: Create tag
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git tag ${{ steps.version.outputs.version }}
-          git push origin ${{ steps.version.outputs.version }}
       
       - name: Create Release
         id: create_release
