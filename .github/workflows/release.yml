@@ -33,12 +33,10 @@ jobs:
       
       - name: Create Release
         id: create_release
-        uses: comnoco/create-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.version }}
-          release_name: Release ${{ steps.version.outputs.version }}
+          name: Release ${{ steps.version.outputs.version }}
           body: |
             Release ${{ steps.version.outputs.raw_version }} from commit ${{ github.sha }}
             
@@ -48,3 +46,5 @@ jobs:
             **Timestamp:** ${{ github.event.head_commit.timestamp }}
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
