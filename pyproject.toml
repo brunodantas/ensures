@@ -1,10 +1,22 @@
 [project]
 name = "ensures"
 version = "0.1.0"
+authors = [
+  { name="Bruno Dantas", email="4422988+brunodantas@users.noreply.github.com" },
+]
 description = "Design by Contract with Functional Programming"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
+classifiers = [
+    "Development Status :: 3 - Alpha"
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/brunodantas/ensures"
+Issues = "https://github.com/brunodantas/ensures/issues"
 
 [build-system]
 requires = ["uv_build >= 0.7.19, <0.9.0"]
