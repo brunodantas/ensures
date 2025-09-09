@@ -114,3 +114,24 @@ handle_result(result2)
 ## More examples
 
 Check [examples.py](/src/ensures/examples.py)
+
+## 📊 Performance
+
+Contract validation adds minimal overhead:
+- **Precondition**: ~7x baseline function call
+- **Postcondition**: ~8x baseline function call
+- **Memory**: Constant memory usage, no leaks
+
+See [performance benchmarks](/src/ensures/test_benchmarks.py) for detailed analysis.
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+## 📝 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a list of changes in each version.
+
+## 📄 License
+
+This project is licensed under the GPL-3.0-or-later License - see the [LICENSE](LICENSE) file for details.
