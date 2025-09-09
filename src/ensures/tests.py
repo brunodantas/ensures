@@ -289,9 +289,7 @@ class TestComplexDecorators:
         # Success case
         result = create_person_description(25, "Alice")
         assert isinstance(result, Success)
-        # Note: nested Success due to combining decorators
-        assert isinstance(result.value, Success)
-        assert result.value.value == "Alice is 25 years old"
+        assert result.value == "Alice is 25 years old"
 
         # Precondition failure
         result = create_person_description(-5, "Bob")
@@ -315,9 +313,7 @@ class TestComplexDecorators:
         # Success case
         result = create_adult_profile(21, "Charlie")
         assert isinstance(result, Success)
-        # Note: nested Success due to combining decorators
-        assert isinstance(result.value, Success)
-        assert result.value.value == "Charlie is an adult at 21 years old"
+        assert result.value == "Charlie is an adult at 21 years old"
 
         # Precondition failure
         result = create_adult_profile(16, "David")
@@ -436,9 +432,7 @@ class TestResultTypes:
         # Success case
         result = safe_sqrt(9)
         assert isinstance(result, Success)
-        # The result will be Success(Success(3.0)) due to decorator wrapping
-        assert isinstance(result.value, Success)
-        assert result.value.value == 3.0
+        assert result.value == 3.0
 
         # Error case
         result = safe_sqrt(-4)
@@ -503,6 +497,21 @@ class TestEdgeCases:
         result = get_positive_number()
         assert isinstance(result, Success)
         assert result.value == 42
+
+    def test_postcondition_with_success_input(self):
+        """Test postcondition when function returns a Success object."""
+
+        def result_is_even(result):
+            return result % 2 == 0
+
+        @postcondition(result_is_even)
+        def double_number(x):
+            # Return a Success object to test the unwrapping logic
+            return Success(x * 2)
+
+        result = double_number(3)
+        assert isinstance(result, Success)
+        assert result.value == 6
 
 
 if __name__ == "__main__":
