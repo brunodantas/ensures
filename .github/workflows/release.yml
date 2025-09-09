@@ -8,6 +8,7 @@ name: Create Release
 permissions:
   contents: write
   pull-requests: read
+  id-token: write  # Required for PyPI trusted publishing
 
 jobs:
   build:
