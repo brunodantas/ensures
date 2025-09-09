@@ -1,6 +1,6 @@
 [project]
 name = "ensures"
-version = "1.0.0" 
+version = "0.3.0" 
 authors = [
   { name="Bruno Dantas", email="4422988+brunodantas@users.noreply.github.com" },
 ]
@@ -10,7 +10,7 @@ requires-python = ">=3.10"
 dependencies = []
 keywords = ["design-by-contract", "precondition", "postcondition", "invariant", "testing", "validation"]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",  # Upgrade to Production/Stable
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Software Development :: Quality Assurance",
