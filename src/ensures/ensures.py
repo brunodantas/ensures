@@ -194,7 +194,13 @@ def precondition(
                 result = pre(*args, **kwargs)
                 if not result:
                     return Error(func, (args, kwargs))
-            return Success(func(*args, **kwargs))
+            result_func = func(*args, **kwargs)
+            # In case of multiple decorators
+            return (
+                result_func
+                if issubclass(type(result_func), Result)
+                else Success(result_func)
+            )
 
         return wrapper
 
@@ -341,12 +347,16 @@ def invariant(
                 pre_check = inv(*args, **kwargs)
                 if not pre_check:
                     return Error(func, (args, kwargs))
-            result = func(*args, **kwargs)
+            result_func = func(*args, **kwargs)
             for inv in functions:
                 post_check = inv(*args, **kwargs)
                 if not post_check:
                     return Error(func, (args, kwargs))
-            return Success(result)
+            return (
+                result_func
+                if issubclass(type(result_func), Result)
+                else Success(result_func)
+            )
 
         return wrapper
 
