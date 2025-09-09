@@ -1,6 +1,7 @@
 from .ensures import (
     Error,
     Result,
+    Success,
     ensure,
     invariant,
     postcondition,
@@ -11,6 +12,7 @@ from .ensures import (
 __all__ = [
     "Error",
     "Result",
+    "Success",
     "ensure",
     "invariant",
     "postcondition",

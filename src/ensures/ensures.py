@@ -2,9 +2,8 @@ from functools import wraps
 
 
 class Result:
-    """Class to represent the result of a function with preconditions or postconditions."""
-
-    pass
+    """Class to represent the result of a function with preconditions or
+    postconditions."""
 
 
 class Success(Result):
@@ -36,8 +35,9 @@ def precondition(*functions):
     """Decorator to specify a precondition for a function.
 
     Args:
-        functions (callable): A list of callables that take the same arguments as the decorated function
-                        and return True if the precondition is met, False otherwise.
+        functions (callable): A list of callables that take the same arguments as the
+            decorated function and return True if the precondition is met,
+            False otherwise.
 
     Returns:
         callable: The decorated function with the precondition check.
@@ -45,7 +45,7 @@ def precondition(*functions):
 
     def decorator(func):
         @wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args, **kwargs) -> Result:
             for pre in functions:
                 result = pre(*args, **kwargs)
                 if not result:
@@ -61,8 +61,9 @@ def postcondition(*functions):
     """Decorator to specify a postcondition for a function.
 
     Args:
-        functions (callable): A list of callables that take the same arguments as the decorated function
-                        and return True if the postcondition is met, False otherwise.
+        functions (callable): A list of callables that take the same arguments as the
+            decorated function and return True if the postcondition is met,
+            False otherwise.
 
     Returns:
         callable: The decorated function with the postcondition check.
@@ -70,7 +71,7 @@ def postcondition(*functions):
 
     def decorator(func):
         @wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args, **kwargs) -> Result:
             result = func(*args, **kwargs)
             if isinstance(result, Success):
                 result = result.value
@@ -89,8 +90,9 @@ def invariant(*functions):
     """Decorator to specify an invariant for a function.
 
     Args:
-        functions (callable): A list of callables that take the same arguments as the decorated function
-                        and return True if the invariant is met, False otherwise.
+        functions (callable): A list of callables that take the same arguments as the
+            decorated function and return True if the invariant is met,
+            False otherwise.
 
     Returns:
         callable: The decorated function with the invariant check.
@@ -98,7 +100,7 @@ def invariant(*functions):
 
     def decorator(func):
         @wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args, **kwargs) -> Result:
             for inv in functions:
                 pre_check = inv(*args, **kwargs)
                 if not pre_check:

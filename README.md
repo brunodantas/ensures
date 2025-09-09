@@ -1,5 +1,11 @@
 # ensures
 
+[![CI](https://github.com/brunodantas/ensures/actions/workflows/ci.yml/badge.svg)](https://github.com/brunodantas/ensures/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![Type checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](https://mypy-lang.org/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 `ensures` is a simple Python package that implements the idea of [Design by Contract](https://en.wikipedia.org/wiki/Design_by_contract) described in the *Pragmatic Paranoia* chapter of [The Pragmatic Programmer](https://en.wikipedia.org/wiki/The_Pragmatic_Programmer). That's the chapter where they say you should *trust nobody, not even yourself*.
 
 ![](trust.jpg)
