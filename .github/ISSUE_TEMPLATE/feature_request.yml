@@ -1,0 +1,45 @@
+---
+name: Feature Request
+about: Suggest an idea for this project
+title: '[FEATURE] '
+labels: ['enhancement']
+assignees: ''
+
+---
+
+## 🚀 Feature Description
+A clear and concise description of the feature you'd like to see added.
+
+## 💡 Motivation
+What problem does this feature solve? What use case does it enable?
+
+## 📝 Proposed Solution
+Describe the solution you'd like to see implemented.
+
+**Proposed API (if applicable):**
+```python
+from ensures import new_feature
+
+# Example of how the new feature would be used
+```
+
+## 🔄 Alternatives Considered
+Describe alternative solutions or features you've considered.
+
+## 📋 Implementation Ideas
+If you have ideas about how this could be implemented, share them here.
+
+## 🧪 Testing Approach
+How should this feature be tested?
+
+## 📚 Documentation Impact
+What documentation would need to be updated or created?
+
+## 🔗 Related Issues
+Link any related issues or discussions.
+
+## ✅ Checklist
+- [ ] I have searched existing issues to ensure this is not a duplicate
+- [ ] I have provided a clear use case for this feature
+- [ ] I have considered how this fits with the existing API
+- [ ] I have thought about potential breaking changes
