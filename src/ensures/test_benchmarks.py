@@ -305,7 +305,9 @@ class TestComparisonBenchmarks:
 
             # Calculate overhead ratio for this cycle
             cycle_ratio = (
-                decorated_time / undecorated_time if undecorated_time > 0 else float("inf")
+                decorated_time / undecorated_time
+                if undecorated_time > 0
+                else float("inf")
             )
             best_ratio = min(best_ratio, cycle_ratio)
 
@@ -313,7 +315,9 @@ class TestComparisonBenchmarks:
         # Local development typically sees 5-10x, CI can see 10-20x
         max_overhead = 25.0 if os.getenv("CI") else 15.0
 
-        assert best_ratio < max_overhead, f"Overhead ratio too high: {best_ratio:.2f}x (threshold: {max_overhead}x)"
+        assert best_ratio < max_overhead, (
+            f"Overhead ratio too high: {best_ratio:.2f}x (threshold: {max_overhead}x)"
+        )
 
 
 if __name__ == "__main__":
