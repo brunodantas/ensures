@@ -1,6 +1,6 @@
 [project]
 name = "ensures"
-version = "0.2.0"
+version = "0.3.0" 
 authors = [
   { name="Bruno Dantas", email="4422988+brunodantas@users.noreply.github.com" },
 ]
@@ -8,15 +8,30 @@ description = "Design by Contract with Functional Programming"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
+keywords = ["design-by-contract", "precondition", "postcondition", "invariant", "testing", "validation"]
 classifiers = [
-    "Development Status :: 3 - Alpha"
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11", 
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
 ]
 license = "GPL-3.0-or-later"
 license-files = ["LICEN[CS]E*"]
 
 [project.urls]
 Homepage = "https://github.com/brunodantas/ensures"
+Repository = "https://github.com/brunodantas/ensures"
 Issues = "https://github.com/brunodantas/ensures/issues"
+Changelog = "https://github.com/brunodantas/ensures/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/brunodantas/ensures#readme"
 
 [build-system]
 requires = ["uv_build >= 0.7.19, <0.9.0"]
@@ -27,7 +42,9 @@ dev = [
     "mypy>=1.17.1",
     "pytest>=8.4.2",
     "pytest-cov>=6.0.0",
+    "pytest-benchmark>=5.1.0",
     "ruff>=0.12.12",
+    "hypothesis>=6.112.0",
 ]
 
 [tool.pytest.ini_options]
